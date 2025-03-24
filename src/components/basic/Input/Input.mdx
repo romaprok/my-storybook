@@ -1,0 +1,188 @@
+import { Meta, Story, Controls, Canvas } from '@storybook/blocks';
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} />
+
+# Input Component
+
+A versatile input component that supports various styles, states, and features.
+
+## Features
+
+- Multiple variants (outlined, filled, standard)
+- Different sizes (small, medium, large)
+- Label and placeholder support
+- Helper text and error states
+- Icon support (start and end icons)
+- Clearable option
+- Full width support
+- Disabled and readonly states
+- Required field indication
+- RTL support
+- Accessibility features
+
+## Usage
+
+```tsx
+import { Input } from './Input';
+
+// Basic usage
+<Input placeholder="Basic input" />
+
+// With label and helper text
+<Input
+  label="Email"
+  helperText="We'll never share your email"
+  placeholder="Enter your email"
+/>
+
+// With error state
+<Input
+  label="Username"
+  error="This username is already taken"
+  value="existing-user"
+/>
+
+// With icons
+<Input
+  startIcon="🔍"
+  endIcon="✓"
+  placeholder="Search..."
+/>
+```
+
+## Examples
+
+### Basic Variants
+
+<Canvas>
+  <Story of={InputStories.Outlined} />
+  <Story of={InputStories.Filled} />
+  <Story of={InputStories.Standard} />
+</Canvas>
+
+### Sizes
+
+<Canvas>
+  <Story of={InputStories.Small} />
+  <Story of={InputStories.Medium} />
+  <Story of={InputStories.Large} />
+</Canvas>
+
+### With Label and Helper Text
+
+<Canvas>
+  <Story of={InputStories.WithLabel} />
+  <Story of={InputStories.WithHelperText} />
+</Canvas>
+
+### Error State
+
+<Canvas>
+  <Story of={InputStories.WithError} />
+</Canvas>
+
+### Required Field
+
+<Canvas>
+  <Story of={InputStories.Required} />
+</Canvas>
+
+### With Icons
+
+<Canvas>
+  <Story of={InputStories.WithStartIcon} />
+  <Story of={InputStories.WithEndIcon} />
+  <Story of={InputStories.WithBothIcons} />
+</Canvas>
+
+### Clearable Input
+
+<Canvas>
+  <Story of={InputStories.Clearable} />
+</Canvas>
+
+### Full Width
+
+<Canvas>
+  <Story of={InputStories.FullWidth} />
+</Canvas>
+
+### States
+
+<Canvas>
+  <Story of={InputStories.Disabled} />
+</Canvas>
+
+### Input Types
+
+<Canvas>
+  <Story of={InputStories.Password} />
+  <Story of={InputStories.Number} />
+</Canvas>
+
+### Complex Example
+
+<Canvas>
+  <Story of={InputStories.ComplexExample} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Accessibility
+
+The Input component follows accessibility best practices:
+
+- Uses semantic HTML elements
+- Supports keyboard navigation
+- Provides proper labeling
+- Includes ARIA attributes
+- Communicates error states
+- Supports screen readers
+
+## Best Practices
+
+1. **Labels and Placeholders**
+   - Always use labels for form inputs
+   - Use placeholders for additional hints, not as replacements for labels
+   - Make labels clear and concise
+
+2. **Error Handling**
+   - Display error messages clearly
+   - Use red color sparingly and with sufficient contrast
+   - Provide helpful error messages that guide users to fix the issue
+
+3. **Icons**
+   - Use icons that are universally recognizable
+   - Ensure icons have sufficient contrast
+   - Add tooltips for icon buttons when necessary
+
+4. **Validation**
+   - Validate input in real-time when appropriate
+   - Show validation feedback immediately after user interaction
+   - Use helper text to prevent errors before they occur
+
+5. **Responsive Design**
+   - Use fullWidth prop for mobile views
+   - Ensure touch targets are large enough
+   - Test with different screen sizes
+
+## CSS Customization
+
+The Input component can be styled through:
+
+1. Built-in variant props
+2. CSS Module classes
+3. Custom className prop
+4. CSS custom properties (coming soon)
+
+## Browser Support
+
+The Input component is compatible with all modern browsers and includes:
+
+- RTL language support
+- Touch device optimization
+- Fallbacks for older browsers
+- Consistent styling across platforms 

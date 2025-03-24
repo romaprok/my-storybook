@@ -1,0 +1,162 @@
+import { Meta, Story, Controls, Canvas } from '@storybook/blocks';
+import * as TypographyStories from './Typography.stories';
+
+<Meta of={TypographyStories} />
+
+# Typography Component
+
+A flexible typography component that provides consistent text styling across your application.
+
+## Features
+
+- Multiple text variants (h1-h6, body1, body2, caption, overline)
+- Text decoration options (underline, strikethrough, overline)
+- Text transformation (uppercase, lowercase, capitalize)
+- Line height control
+- Letter spacing control
+- Text truncation (single and multi-line)
+- Text shadow effects
+- Font family options
+- Custom font support
+- Color variants
+- Text alignment
+- Font weight options
+
+## Usage
+
+```tsx
+import { Typography } from './Typography';
+
+// Basic usage
+<Typography variant="h1">Main Heading</Typography>
+<Typography variant="body1">Regular paragraph text</Typography>
+
+// With styling
+<Typography 
+  variant="h4" 
+  color="primary" 
+  align="center" 
+  weight="bold"
+>
+  Styled Heading
+</Typography>
+
+// With text effects
+<Typography 
+  variant="body1" 
+  decoration="underline"
+  transform="uppercase"
+  letterSpacing="wide"
+>
+  Styled Text
+</Typography>
+```
+
+## Examples
+
+### Heading Variants
+
+<Canvas>
+  <Story of={TypographyStories.Heading1} />
+  <Story of={TypographyStories.Heading2} />
+  <Story of={TypographyStories.Heading3} />
+  <Story of={TypographyStories.Heading4} />
+  <Story of={TypographyStories.Heading5} />
+  <Story of={TypographyStories.Heading6} />
+</Canvas>
+
+### Body Text Variants
+
+<Canvas>
+  <Story of={TypographyStories.Body1} />
+  <Story of={TypographyStories.Body2} />
+</Canvas>
+
+### Special Variants
+
+<Canvas>
+  <Story of={TypographyStories.Caption} />
+  <Story of={TypographyStories.Overline} />
+</Canvas>
+
+### Colors
+
+<Canvas>
+  <Story of={TypographyStories.PrimaryColor} />
+  <Story of={TypographyStories.SecondaryColor} />
+  <Story of={TypographyStories.ErrorColor} />
+  <Story of={TypographyStories.SuccessColor} />
+  <Story of={TypographyStories.WarningColor} />
+  <Story of={TypographyStories.InfoColor} />
+</Canvas>
+
+### Text Effects
+
+<Canvas>
+  <Story of={TypographyStories.Underline} />
+  <Story of={TypographyStories.LineThrough} />
+  <Story of={TypographyStories.Uppercase} />
+  <Story of={TypographyStories.Lowercase} />
+  <Story of={TypographyStories.Capitalize} />
+</Canvas>
+
+### Line Height and Spacing
+
+<Canvas>
+  <Story of={TypographyStories.TightLineHeight} />
+  <Story of={TypographyStories.LooseLineHeight} />
+  <Story of={TypographyStories.TighterLetterSpacing} />
+  <Story of={TypographyStories.WiderLetterSpacing} />
+</Canvas>
+
+### Truncation
+
+<Canvas>
+  <Story of={TypographyStories.SingleLineTruncate} />
+  <Story of={TypographyStories.MultiLineTruncate} />
+</Canvas>
+
+### Font Families
+
+<Canvas>
+  <Story of={TypographyStories.SerifFont} />
+  <Story of={TypographyStories.MonoFont} />
+  <Story of={TypographyStories.CustomFont} />
+</Canvas>
+
+### Combined Examples
+
+<Canvas>
+  <Story of={TypographyStories.StyledHeading} />
+  <Story of={TypographyStories.StyledParagraph} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Accessibility
+
+The Typography component follows accessibility best practices:
+
+- Uses semantic HTML elements
+- Maintains proper heading hierarchy
+- Includes appropriate ARIA attributes
+- Ensures sufficient color contrast
+- Supports screen readers
+
+## Best Practices
+
+1. Use appropriate heading levels (h1-h6)
+2. Maintain consistent text hierarchy
+3. Choose readable font sizes and line heights
+4. Ensure sufficient color contrast
+5. Use truncation carefully to avoid losing important content
+
+## CSS Customization
+
+The Typography component can be customized through:
+
+1. Built-in props for common styling needs
+2. CSS Module classes for component-specific styles
+3. Custom font families for unique typography 

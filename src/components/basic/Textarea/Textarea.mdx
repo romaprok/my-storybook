@@ -1,0 +1,191 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as TextareaStories from './Textarea.stories';
+
+<Meta of={TextareaStories} />
+
+# Textarea Component
+
+A versatile textarea component that provides a clean and accessible way to implement multi-line text input in forms. The component supports various sizes, colors, and states, making it suitable for a wide range of use cases.
+
+## Features
+
+- Multiple sizes (small, medium, large)
+- Customizable colors
+- Placeholder text support
+- Helper text and error message support
+- Required field indication
+- Auto-resize capability
+- Customizable number of rows
+- Fully accessible
+- RTL support
+- Keyboard navigation
+- Focus and hover states
+
+## Usage
+
+```tsx
+import { Textarea } from './components/basic/Textarea';
+
+// Basic textarea
+<Textarea
+  label="Enter your message"
+  placeholder="Type your message here..."
+/>
+
+// With helper text
+<Textarea
+  label="Description"
+  helperText="Please provide a detailed description"
+/>
+
+// With error state
+<Textarea
+  label="Required field"
+  error="Please enter your message"
+/>
+
+// Auto-resizing textarea
+<Textarea
+  label="Auto-resizing Textarea"
+  autoResize
+  placeholder="Type to see the textarea grow..."
+/>
+```
+
+## Props
+
+The Textarea component accepts the following props:
+
+<Controls />
+
+## Examples
+
+### Basic Usage
+
+<Canvas of={TextareaStories.Default} />
+
+### With Placeholder
+
+<Canvas of={TextareaStories.WithPlaceholder} />
+
+### Size Variants
+
+<Canvas>
+  <Story of={TextareaStories.Small} />
+  <Story of={TextareaStories.Medium} />
+  <Story of={TextareaStories.Large} />
+</Canvas>
+
+### States
+
+<Canvas>
+  <Story of={TextareaStories.Disabled} />
+  <Story of={TextareaStories.Required} />
+</Canvas>
+
+### Helper Text and Error States
+
+<Canvas>
+  <Story of={TextareaStories.WithHelperText} />
+  <Story of={TextareaStories.WithError} />
+</Canvas>
+
+### Color Variants
+
+<Canvas>
+  <Story of={TextareaStories.Primary} />
+  <Story of={TextareaStories.Secondary} />
+  <Story of={TextareaStories.Success} />
+  <Story of={TextareaStories.Error} />
+  <Story of={TextareaStories.Warning} />
+</Canvas>
+
+### Advanced Features
+
+<Canvas>
+  <Story of={TextareaStories.AutoResize} />
+  <Story of={TextareaStories.CustomRows} />
+</Canvas>
+
+### Form Integration
+
+<Canvas of={TextareaStories.FormExample} />
+
+## Best Practices
+
+1. **Labels**
+   - Always provide clear and concise labels
+   - Use action-oriented language for better user understanding
+   - Position labels consistently across your application
+
+2. **Placeholder Text**
+   - Use placeholder text to provide examples or guidance
+   - Keep placeholder text short and clear
+   - Don't use placeholder text as a replacement for labels
+
+3. **States**
+   - Clearly indicate required fields
+   - Show error states when validation fails
+   - Use helper text to provide additional context
+   - Disable the textarea when no input is allowed
+
+4. **Accessibility**
+   - Ensure proper ARIA attributes are maintained
+   - Maintain keyboard navigation support
+   - Use sufficient color contrast for visibility
+   - Provide meaningful error messages
+
+5. **Layout**
+   - Maintain consistent spacing between form elements
+   - Consider mobile responsiveness
+   - Use appropriate width based on content
+   - Consider using auto-resize for dynamic content
+
+## CSS Customization
+
+The Textarea component can be customized using CSS modules. Here are the main classes available:
+
+```css
+.container /* Main container */
+.label /* Label style */
+.textarea /* Textarea element style */
+.helperText /* Helper text style */
+.error /* Error message style */
+```
+
+You can override these classes by providing a custom className prop:
+
+```tsx
+<Textarea
+  className="custom-textarea"
+  label="Custom styled textarea"
+/>
+```
+
+## Accessibility
+
+The Textarea component follows WAI-ARIA guidelines and includes:
+
+- Proper role attributes
+- Keyboard navigation support
+- Focus management
+- ARIA labels and descriptions
+- Color contrast compliance
+- Screen reader support
+
+## Browser Support
+
+The Textarea component is supported in all modern browsers:
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
+
+## Related Components
+
+- Input
+- Select
+- Form Field
+- Form Group 

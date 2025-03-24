@@ -1,0 +1,270 @@
+.typography {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Variants */
+.typographyH1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.typographyH2 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.typographyH3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.typographyH4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.typographyH5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.typographyH6 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.typographyBody1 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.typographyBody2 {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.typographyCaption {
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.typographyOverline {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Colors */
+.typographyPrimary {
+  color: #111827;
+}
+
+.typographySecondary {
+  color: #4B5563;
+}
+
+.typographyError {
+  color: #DC2626;
+}
+
+.typographySuccess {
+  color: #059669;
+}
+
+.typographyWarning {
+  color: #D97706;
+}
+
+.typographyInfo {
+  color: #3B82F6;
+}
+
+/* Alignment */
+.typographyLeft {
+  text-align: left;
+}
+
+.typographyCenter {
+  text-align: center;
+}
+
+.typographyRight {
+  text-align: right;
+}
+
+.typographyJustify {
+  text-align: justify;
+}
+
+/* Font Weights */
+.typographyLight {
+  font-weight: 300;
+}
+
+.typographyRegular {
+  font-weight: 400;
+}
+
+.typographyMedium {
+  font-weight: 500;
+}
+
+.typographyBold {
+  font-weight: 700;
+}
+
+/* Text Decoration */
+.typographyNone {
+  text-decoration: none;
+}
+
+.typographyUnderline {
+  text-decoration: underline;
+}
+
+.typographyLineThrough {
+  text-decoration: line-through;
+}
+
+.typographyOverline {
+  text-decoration: overline;
+}
+
+/* Text Transform */
+.typographyNone {
+  text-transform: none;
+}
+
+.typographyUppercase {
+  text-transform: uppercase;
+}
+
+.typographyLowercase {
+  text-transform: lowercase;
+}
+
+.typographyCapitalize {
+  text-transform: capitalize;
+}
+
+/* Line Height */
+.typographyLineHeightNone {
+  line-height: 1;
+}
+
+.typographyLineHeightTight {
+  line-height: 1.25;
+}
+
+.typographyLineHeightNormal {
+  line-height: 1.5;
+}
+
+.typographyLineHeightRelaxed {
+  line-height: 1.75;
+}
+
+.typographyLineHeightLoose {
+  line-height: 2;
+}
+
+/* Letter Spacing */
+.typographyLetterSpacingTighter {
+  letter-spacing: -0.05em;
+}
+
+.typographyLetterSpacingTight {
+  letter-spacing: -0.025em;
+}
+
+.typographyLetterSpacingNormal {
+  letter-spacing: 0;
+}
+
+.typographyLetterSpacingWide {
+  letter-spacing: 0.025em;
+}
+
+.typographyLetterSpacingWider {
+  letter-spacing: 0.05em;
+}
+
+.typographyLetterSpacingWidest {
+  letter-spacing: 0.1em;
+}
+
+/* Text Shadow */
+.typographyShadowNone {
+  text-shadow: none;
+}
+
+.typographyShadowSm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.typographyShadowMd {
+  text-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.typographyShadowLg {
+  text-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Font Family */
+.typographyFontFamilySans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.typographyFontFamilySerif {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.typographyFontFamilyMono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Truncation */
+.typographyTruncateSingle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.typographyTruncateMulti {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.typographyTruncate2Lines {
+  -webkit-line-clamp: 2;
+}
+
+.typographyTruncate3Lines {
+  -webkit-line-clamp: 3;
+}
+
+.typographyTruncate4Lines {
+  -webkit-line-clamp: 4;
+}
+
+.typographyTruncate5Lines {
+  -webkit-line-clamp: 5;
+}
+
+/* Utilities */
+.typographyNoWrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.typographyGutterBottom {
+  margin-bottom: 0.35em;
+} 

@@ -1,0 +1,204 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} />
+
+# Select Component
+
+A versatile select component that provides a clean and accessible way to implement dropdown selections in forms. The component supports various sizes, colors, and states, making it suitable for a wide range of use cases.
+
+## Features
+
+- Multiple sizes (small, medium, large)
+- Customizable colors
+- Placeholder text support
+- Helper text and error message support
+- Required field indication
+- Disabled options support
+- Fully accessible
+- RTL support
+- Keyboard navigation
+- Focus and hover states
+
+## Usage
+
+```tsx
+import { Select } from './components/basic/Select';
+
+// Basic select
+<Select
+  options={[
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+  ]}
+  label="Select an option"
+/>
+
+// With placeholder
+<Select
+  options={[
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+  ]}
+  label="Choose an option"
+  placeholder="Select from the list..."
+/>
+
+// With helper text
+<Select
+  options={[
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+  ]}
+  label="Select an option"
+  helperText="Choose one of the available options"
+/>
+
+// With error state
+<Select
+  options={[
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+  ]}
+  label="Required field"
+  error="Please select an option"
+/>
+```
+
+## Props
+
+The Select component accepts the following props:
+
+<Controls />
+
+## Examples
+
+### Basic Select
+
+<Canvas of={SelectStories.Default} />
+
+### With Placeholder
+
+<Canvas of={SelectStories.WithPlaceholder} />
+
+### Sizes
+
+<Canvas>
+  <Story of={SelectStories.Small} />
+  <Story of={SelectStories.Medium} />
+  <Story of={SelectStories.Large} />
+</Canvas>
+
+### States
+
+<Canvas>
+  <Story of={SelectStories.Disabled} />
+  <Story of={SelectStories.Required} />
+</Canvas>
+
+### With Helper Text and Error
+
+<Canvas>
+  <Story of={SelectStories.WithHelperText} />
+  <Story of={SelectStories.WithError} />
+</Canvas>
+
+### Color Variants
+
+<Canvas>
+  <Story of={SelectStories.Primary} />
+  <Story of={SelectStories.Secondary} />
+  <Story of={SelectStories.Success} />
+  <Story of={SelectStories.Error} />
+  <Story of={SelectStories.Warning} />
+</Canvas>
+
+### With Disabled Options
+
+<Canvas of={SelectStories.WithDisabledOptions} />
+
+### Form Example
+
+<Canvas of={SelectStories.FormExample} />
+
+## Best Practices
+
+1. **Labels**
+   - Always provide clear and concise labels
+   - Use action-oriented language for better user understanding
+   - Position labels consistently across your application
+
+2. **Options**
+   - Keep option labels short and clear
+   - Use consistent capitalization
+   - Consider using disabled options for unavailable choices
+   - Group related options when appropriate
+
+3. **States**
+   - Clearly indicate required fields
+   - Show error states when validation fails
+   - Use helper text to provide additional context
+   - Disable the select when no valid options are available
+
+4. **Accessibility**
+   - Ensure proper ARIA attributes are maintained
+   - Maintain keyboard navigation support
+   - Use sufficient color contrast for visibility
+   - Provide meaningful error messages
+
+5. **Layout**
+   - Maintain consistent spacing between form elements
+   - Consider mobile responsiveness
+   - Use appropriate width based on content
+
+## CSS Customization
+
+The Select component can be customized using CSS modules. Here are the main classes available:
+
+```css
+.container /* Main container */
+.label /* Label style */
+.selectWrapper /* Wrapper for the select element */
+.select /* Select element style */
+.arrow /* Dropdown arrow style */
+.helperText /* Helper text style */
+.error /* Error message style */
+```
+
+You can override these classes by providing a custom className prop:
+
+```tsx
+<Select
+  className="custom-select"
+  options={options}
+  label="Custom styled select"
+/>
+```
+
+## Accessibility
+
+The Select component follows WAI-ARIA guidelines and includes:
+
+- Proper role attributes
+- Keyboard navigation support
+- Focus management
+- ARIA labels and descriptions
+- Color contrast compliance
+- Screen reader support
+
+## Browser Support
+
+The Select component is supported in all modern browsers:
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
+
+## Related Components
+
+- Checkbox
+- Radio
+- Form Field
+- Form Group 

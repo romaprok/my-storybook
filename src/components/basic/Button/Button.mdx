@@ -1,0 +1,238 @@
+import { Meta, Story, Controls, Canvas } from '@storybook/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button Component
+
+A versatile button component that supports various styles, states, and features.
+
+## Features
+
+- Multiple variants (primary, secondary, outline, ghost)
+- Different sizes (small, medium, large)
+- Loading state with spinner
+- Icon support (left and right icons)
+- Full width option
+- Disabled state
+- Custom styling through className
+- Accessibility features
+
+## Usage
+
+```tsx
+import { Button } from './Button';
+
+// Basic usage
+<Button>Click me</Button>
+
+// With variant and size
+<Button variant="primary" size="large">
+  Large Primary Button
+</Button>
+
+// With loading state
+<Button loading>Loading...</Button>
+
+// With icons
+<Button leftIcon="←" rightIcon="→">
+  Button with Icons
+</Button>
+```
+
+## Examples
+
+### Basic Variants
+
+<Canvas>
+  <Story of={ButtonStories.Primary} />
+  <Story of={ButtonStories.Secondary} />
+  <Story of={ButtonStories.Outline} />
+  <Story of={ButtonStories.Ghost} />
+</Canvas>
+
+### Sizes
+
+<Canvas>
+  <Story of={ButtonStories.Small} />
+  <Story of={ButtonStories.Medium} />
+  <Story of={ButtonStories.Large} />
+</Canvas>
+
+### States
+
+<Canvas>
+  <Story of={ButtonStories.Loading} />
+  <Story of={ButtonStories.Disabled} />
+</Canvas>
+
+### With Icons
+
+<Canvas>
+  <Story of={ButtonStories.WithIcons} />
+</Canvas>
+
+### Full Width
+
+<Canvas>
+  <Story of={ButtonStories.FullWidth} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Accessibility
+
+The Button component follows accessibility best practices:
+
+- Uses native `button` element
+- Supports keyboard navigation
+- Includes proper ARIA attributes
+- Maintains focus states
+- Communicates loading states to screen readers
+
+## Best Practices
+
+1. Use clear and action-oriented button text
+2. Choose appropriate variants for different actions
+3. Include loading states for async operations
+4. Maintain consistent sizing within your interface
+5. Use icons to enhance visual communication
+
+## Advanced Usage Examples
+
+### Form Submission
+```tsx
+const handleSubmit = async () => {
+  setLoading(true);
+  try {
+    await submitForm();
+    showSuccess();
+  } catch (error) {
+    showError();
+  } finally {
+    setLoading(false);
+  }
+};
+
+<Button 
+  loading={loading}
+  disabled={loading}
+  onClick={handleSubmit}
+  leftIcon={<SaveIcon />}
+>
+  {loading ? 'Saving...' : 'Save Changes'}
+</Button>
+```
+
+### Navigation Button
+```tsx
+<Button 
+  variant="ghost"
+  leftIcon={<ArrowLeftIcon />}
+  onClick={() => navigate(-1)}
+>
+  Back to Previous Page
+</Button>
+```
+
+### Action Button with Confirmation
+```tsx
+const handleDelete = () => {
+  if (window.confirm('Are you sure you want to delete this item?')) {
+    deleteItem();
+  }
+};
+
+<Button 
+  variant="outline"
+  color="error"
+  leftIcon={<DeleteIcon />}
+  onClick={handleDelete}
+>
+  Delete Item
+</Button>
+```
+
+### Icon-Only Button
+```tsx
+<Button 
+  variant="ghost"
+  size="small"
+  aria-label="Close dialog"
+>
+  <CloseIcon />
+</Button>
+```
+
+### Responsive Button Group
+```tsx
+<div className={styles.buttonGroup}>
+  <Button variant="primary" size="medium">
+    Primary Action
+  </Button>
+  <Button variant="outline" size="medium">
+    Secondary Action
+  </Button>
+  <Button variant="ghost" size="medium">
+    Cancel
+  </Button>
+</div>
+```
+
+### Conditional Button States
+```tsx
+<Button
+  variant={isActive ? 'primary' : 'outline'}
+  disabled={!isEnabled}
+  loading={isProcessing}
+  leftIcon={isActive ? <ActiveIcon /> : <InactiveIcon />}
+>
+  {isProcessing ? 'Processing...' : isActive ? 'Active' : 'Inactive'}
+</Button>
+```
+
+## Common Use Cases
+
+### 1. Form Actions
+- Submit buttons with loading states
+- Cancel/Reset buttons
+- Multi-step form navigation
+- File upload triggers
+
+### 2. Navigation
+- Back/Forward buttons
+- Menu toggles
+- Tab navigation
+- Pagination controls
+
+### 3. Data Management
+- Add/Edit/Delete actions
+- Save/Discard changes
+- Import/Export data
+- Bulk actions
+
+### 4. User Interface
+- Modal triggers
+- Dropdown toggles
+- Search triggers
+- Filter toggles
+
+### 5. Authentication
+- Login/Logout buttons
+- Sign up triggers
+- Password reset
+- Social login options
+
+## CSS Customization
+
+The Button component uses CSS Modules for styling. You can customize the appearance by:
+
+1. Modifying the CSS module file
+2. Using the className prop for additional styles
+3. Overriding specific variants or states
+
+## Browser Support
+
+The Button component is compatible with all modern browsers and includes fallbacks for older versions. 

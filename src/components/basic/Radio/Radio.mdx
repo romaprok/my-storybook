@@ -1,0 +1,181 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+# Radio Component
+
+A versatile radio button component that provides a clean and accessible way to implement single-selection options in forms. The component supports various sizes, colors, and states, making it suitable for a wide range of use cases.
+
+## Features
+
+- Multiple sizes (small, medium, large)
+- Customizable colors
+- Label positioning options
+- Helper text and error message support
+- Required field indication
+- Fully accessible
+- RTL support
+- Keyboard navigation
+- Focus and hover states
+
+## Usage
+
+```tsx
+import { Radio } from './components/basic/Radio';
+
+// Basic radio button
+<Radio label="Select option" />
+
+// With helper text
+<Radio
+  label="Choose a plan"
+  helperText="Select the plan that best suits your needs"
+/>
+
+// With error state
+<Radio
+  label="Required field"
+  error="Please select an option"
+/>
+
+// Required field
+<Radio
+  label="Accept terms"
+  required
+/>
+```
+
+## Props
+
+The Radio component accepts the following props:
+
+<Controls />
+
+## Examples
+
+### Basic Radio
+
+<Canvas of={RadioStories.Default} />
+
+### Sizes
+
+<Canvas>
+  <Story of={RadioStories.Small} />
+  <Story of={RadioStories.Medium} />
+  <Story of={RadioStories.Large} />
+</Canvas>
+
+### Label Positions
+
+<Canvas>
+  <Story of={RadioStories.LabelLeft} />
+  <Story of={RadioStories.LabelRight} />
+</Canvas>
+
+### States
+
+<Canvas>
+  <Story of={RadioStories.Checked} />
+  <Story of={RadioStories.Disabled} />
+  <Story of={RadioStories.DisabledChecked} />
+</Canvas>
+
+### With Helper Text and Error
+
+<Canvas>
+  <Story of={RadioStories.WithHelperText} />
+  <Story of={RadioStories.WithError} />
+</Canvas>
+
+### Color Variants
+
+<Canvas>
+  <Story of={RadioStories.Primary} />
+  <Story of={RadioStories.Secondary} />
+  <Story of={RadioStories.Success} />
+  <Story of={RadioStories.Error} />
+  <Story of={RadioStories.Warning} />
+</Canvas>
+
+### Radio Group Example
+
+<Canvas of={RadioStories.RadioGroup} />
+
+### Form Example
+
+<Canvas of={RadioStories.FormExample} />
+
+## Best Practices
+
+1. **Labels**
+   - Always provide clear and concise labels
+   - Use action-oriented language for better user understanding
+   - Position labels consistently across your application
+
+2. **States**
+   - Clearly indicate required fields
+   - Show error states when validation fails
+   - Use helper text to provide additional context
+
+3. **Accessibility**
+   - Ensure proper ARIA attributes are maintained
+   - Maintain keyboard navigation support
+   - Use sufficient color contrast for visibility
+   - Provide meaningful error messages
+
+4. **Layout**
+   - Maintain consistent spacing between radio options
+   - Align radio buttons properly with other form elements
+   - Consider mobile responsiveness when positioning labels
+
+## CSS Customization
+
+The Radio component can be customized using CSS modules. Here are the main classes available:
+
+```css
+.container /* Main container */
+.inputWrapper /* Wrapper for the input element */
+.input /* Hidden native input */
+.radio /* Custom radio style */
+.label /* Label style */
+.helperText /* Helper text style */
+.error /* Error message style */
+```
+
+You can override these classes by providing a custom className prop:
+
+```tsx
+<Radio
+  className="custom-radio"
+  label="Custom styled radio"
+/>
+```
+
+## Accessibility
+
+The Radio component follows WAI-ARIA guidelines and includes:
+
+- Proper role attributes
+- Keyboard navigation support
+- Focus management
+- ARIA labels and descriptions
+- Color contrast compliance
+- Screen reader support
+
+## Browser Support
+
+The Radio component is supported in all modern browsers:
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
+
+## Related Components
+
+- Checkbox
+- Select
+- Form Field
+- Form Group 

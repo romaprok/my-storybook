@@ -1,0 +1,198 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox Component
+
+A versatile checkbox component that supports both standard checkbox and switch variants. The component is highly customizable with various sizes, colors, and states, making it suitable for a wide range of use cases.
+
+## Features
+
+- Two variants: standard checkbox and switch
+- Multiple sizes (small, medium, large)
+- Customizable colors
+- Support for indeterminate state
+- Label positioning options
+- Helper text and error message support
+- Fully accessible
+- RTL support
+- Keyboard navigation
+
+## Usage
+
+```tsx
+import { Checkbox } from './components/basic/Checkbox';
+
+// Basic checkbox
+<Checkbox label="Accept terms" />
+
+// Switch variant
+<Checkbox variant="switch" label="Enable notifications" />
+
+// With helper text
+<Checkbox
+  label="Subscribe to newsletter"
+  helperText="You will receive weekly updates"
+/>
+
+// With error state
+<Checkbox
+  label="Required field"
+  error="This field is required"
+/>
+
+// Indeterminate state
+<Checkbox
+  label="Select all"
+  indeterminate={true}
+/>
+```
+
+## Props
+
+The Checkbox component accepts the following props:
+
+<Controls />
+
+## Examples
+
+### Basic Checkbox
+
+<Canvas of={CheckboxStories.DefaultCheckbox} />
+
+### Switch Variant
+
+<Canvas of={CheckboxStories.Switch} />
+
+### Sizes
+
+<Canvas>
+  <Story of={CheckboxStories.Small} />
+  <Story of={CheckboxStories.Medium} />
+  <Story of={CheckboxStories.Large} />
+</Canvas>
+
+### Label Positions
+
+<Canvas>
+  <Story of={CheckboxStories.LabelLeft} />
+  <Story of={CheckboxStories.LabelRight} />
+</Canvas>
+
+### States
+
+<Canvas>
+  <Story of={CheckboxStories.Checked} />
+  <Story of={CheckboxStories.Indeterminate} />
+  <Story of={CheckboxStories.Disabled} />
+  <Story of={CheckboxStories.DisabledChecked} />
+</Canvas>
+
+### With Helper Text and Error
+
+<Canvas>
+  <Story of={CheckboxStories.WithHelperText} />
+  <Story of={CheckboxStories.WithError} />
+</Canvas>
+
+### Color Variants
+
+<Canvas>
+  <Story of={CheckboxStories.Primary} />
+  <Story of={CheckboxStories.Secondary} />
+  <Story of={CheckboxStories.Success} />
+  <Story of={CheckboxStories.Error} />
+  <Story of={CheckboxStories.Warning} />
+</Canvas>
+
+### Switch Examples
+
+<Canvas>
+  <Story of={CheckboxStories.SmallSwitch} />
+  <Story of={CheckboxStories.LargeSwitch} />
+  <Story of={CheckboxStories.DisabledSwitch} />
+  <Story of={CheckboxStories.ColoredSwitch} />
+</Canvas>
+
+### Complex Examples
+
+<Canvas>
+  <Story of={CheckboxStories.TermsAndConditions} />
+  <Story of={CheckboxStories.NotificationSettings} />
+</Canvas>
+
+## Best Practices
+
+1. **Labels**
+   - Always provide clear and concise labels
+   - Use action-oriented language for better user understanding
+   - Position labels consistently across your application
+
+2. **States**
+   - Use the indeterminate state when some, but not all, items in a group are selected
+   - Clearly indicate disabled states with reduced opacity
+   - Show error states when validation fails
+
+3. **Accessibility**
+   - Ensure proper ARIA attributes are maintained
+   - Maintain keyboard navigation support
+   - Use sufficient color contrast for visibility
+   - Provide meaningful error messages
+
+4. **Layout**
+   - Maintain consistent spacing between checkbox groups
+   - Align checkboxes properly with other form elements
+   - Consider mobile responsiveness when positioning labels
+
+## CSS Customization
+
+The Checkbox component can be customized using CSS modules. Here are the main classes available:
+
+```css
+.container /* Main container */
+.inputWrapper /* Wrapper for the input element */
+.input /* Hidden native input */
+.checkbox /* Custom checkbox style */
+.switch /* Switch variant style */
+.label /* Label style */
+.helperText /* Helper text style */
+.error /* Error message style */
+```
+
+You can override these classes by providing a custom className prop:
+
+```tsx
+<Checkbox
+  className="custom-checkbox"
+  label="Custom styled checkbox"
+/>
+```
+
+## Accessibility
+
+The Checkbox component follows WAI-ARIA guidelines and includes:
+
+- Proper role attributes
+- Keyboard navigation support
+- Focus management
+- ARIA labels and descriptions
+- Color contrast compliance
+- Screen reader support
+
+## Browser Support
+
+The Checkbox component is supported in all modern browsers:
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
+
+## Related Components
+
+- Radio Button
+- Toggle Button
+- Form Field
+- Form Group 

@@ -1,0 +1,248 @@
+.container {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+.container.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.container.labelLeft {
+  flex-direction: row-reverse;
+}
+
+.checkboxWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base checkbox/switch styles */
+.checkbox,
+.switch {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.checkbox {
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-background);
+}
+
+.switch {
+  width: 36px;
+  height: 20px;
+  background-color: var(--color-secondary);
+  border-radius: var(--border-radius-full);
+  position: relative;
+}
+
+/* Sizes */
+.small .checkbox {
+  width: var(--spacing-md);
+  height: var(--spacing-md);
+}
+
+.small .switch {
+  width: 28px;
+  height: 16px;
+}
+
+.large .checkbox {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+}
+
+.large .switch {
+  width: 44px;
+  height: 24px;
+}
+
+/* States */
+.checkbox:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkbox:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+}
+
+.checkbox:checked:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.switch:checked {
+  background-color: var(--color-primary);
+}
+
+.switch:hover:not(:disabled) {
+  background-color: var(--color-secondary-hover);
+}
+
+.switch:checked:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+/* Switch thumb */
+.switch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-full);
+  transition: transform var(--transition-normal);
+}
+
+.small .switch::before {
+  width: 12px;
+  height: 12px;
+}
+
+.large .switch::before {
+  width: 20px;
+  height: 20px;
+}
+
+.switch:checked::before {
+  transform: translateX(16px);
+}
+
+.small .switch:checked::before {
+  transform: translateX(12px);
+}
+
+.large .switch:checked::before {
+  transform: translateX(20px);
+}
+
+/* Focus styles */
+.checkbox:focus,
+.switch:focus {
+  outline: none;
+}
+
+.checkbox:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.switch:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+/* Error state */
+.error .checkbox {
+  border-color: var(--color-error);
+}
+
+.error .switch {
+  background-color: var(--color-error);
+}
+
+/* Label */
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  user-select: none;
+}
+
+/* Helper text */
+.helperText {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-helper);
+  margin-top: var(--spacing-xxs);
+}
+
+.errorText {
+  color: var(--color-error);
+}
+
+/* Checkmark icon */
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--spacing-sm);
+  height: var(--spacing-sm);
+  color: var(--color-background);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.checkbox:checked + .checkmark {
+  opacity: 1;
+}
+
+.small .checkmark {
+  width: var(--spacing-xs);
+  height: var(--spacing-xs);
+}
+
+.large .checkmark {
+  width: var(--spacing-md);
+  height: var(--spacing-md);
+}
+
+/* Label styles */
+.label-left .label {
+  margin-right: 8px;
+  order: -1;
+}
+
+.label-right .label {
+  margin-left: 8px;
+}
+
+/* Size variations */
+.small .label {
+  font-size: 0.75rem;
+}
+
+.large .label {
+  font-size: 1rem;
+}
+
+/* RTL Support */
+[dir="rtl"] .label-left .label {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+[dir="rtl"] .label-right .label {
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+[dir="rtl"] .switch .thumb {
+  left: auto;
+  right: 2px;
+}
+
+[dir="rtl"] .switch .input:checked + .control .thumb {
+  left: auto;
+  right: calc(100% - 14px);
+}
+
+[dir="rtl"] .switch.small .input:checked + .control .thumb {
+  right: calc(100% - 12px);
+}
+
+[dir="rtl"] .switch.large .input:checked + .control .thumb {
+  right: calc(100% - 18px);
+} 

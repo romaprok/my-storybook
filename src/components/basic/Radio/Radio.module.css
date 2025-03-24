@@ -1,0 +1,176 @@
+.container {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+.container.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.container.labelLeft {
+  flex-direction: row-reverse;
+}
+
+.radioWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base radio styles */
+.radio {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+/* Sizes */
+.small .radio {
+  width: var(--spacing-md);
+  height: var(--spacing-md);
+}
+
+.large .radio {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+}
+
+/* States */
+.radio:checked {
+  border-color: var(--color-primary);
+}
+
+.radio:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+}
+
+.radio:checked:hover:not(:disabled) {
+  border-color: var(--color-primary-hover);
+}
+
+/* Focus styles */
+.radio:focus {
+  outline: none;
+}
+
+.radio:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+/* Error state */
+.error .radio {
+  border-color: var(--color-error);
+}
+
+/* Label */
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  user-select: none;
+}
+
+/* Helper text */
+.helperText {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-helper);
+  margin-top: var(--spacing-xxs);
+}
+
+.errorText {
+  color: var(--color-error);
+}
+
+/* Radio dot */
+.radio::before {
+  content: '';
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-primary);
+  transform: scale(0);
+  transition: transform var(--transition-normal);
+}
+
+.radio:checked::before {
+  transform: scale(1);
+}
+
+.small .radio::before {
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+}
+
+.large .radio::before {
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+}
+
+/* RTL Support */
+[dir="rtl"] .container.labelLeft {
+  flex-direction: row;
+}
+
+[dir="rtl"] .container:not(.labelLeft) {
+  flex-direction: row-reverse;
+}
+
+/* Colors */
+.primary {
+  color: #1976d2;
+}
+
+.secondary {
+  color: #9c27b0;
+}
+
+.success {
+  color: #2e7d32;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.warning {
+  color: #ed6c02;
+}
+
+/* Label positions */
+.left {
+  order: -1;
+}
+
+.right {
+  order: 1;
+}
+
+/* RTL support */
+[dir='rtl'] .label.left {
+  order: 1;
+}
+
+[dir='rtl'] .label.right {
+  order: -1;
+}
+
+[dir='rtl'] .required {
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+.required {
+  color: #d32f2f;
+  margin-left: 4px;
+} 
