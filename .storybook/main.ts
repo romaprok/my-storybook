@@ -13,8 +13,14 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    autodocs: true,
-    defaultName: 'Documentation',
+    autodocs: "tag",
+  },
+  viteFinal: async (config) => {
+    // Add base URL for GitHub Pages
+    if (process.env.NODE_ENV === 'production') {
+      config.base = '/my-storybook/';
+    }
+    return config;
   },
 };
 
