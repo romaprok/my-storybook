@@ -1,104 +1,81 @@
 import React from 'react';
+import classNames from 'classnames';
 import styles from './Radio.module.css';
 
-export interface RadioProps {
-  /** The label for the radio button */
-  label?: string;
-  /** The position of the label */
-  labelPosition?: 'left' | 'right';
-  /** The size of the radio button */
-  size?: 'small' | 'medium' | 'large';
-  /** Helper text displayed below the radio button */
+export type RadioSize = 'small' | 'medium' | 'large';
+
+export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+  /** The size of the radio */
+  size?: RadioSize;
+  /** The label for the radio */
+  label?: React.ReactNode;
+  /** Error state */
+  error?: boolean;
+  /** Helper text to display below the radio */
   helperText?: string;
-  /** Error message */
-  error?: string;
-  /** Whether the radio button is required */
-  required?: boolean;
-  /** Custom class name */
-  className?: string;
-  /** Whether the radio button is checked */
-  checked?: boolean;
-  /** Default checked state */
-  defaultChecked?: boolean;
-  /** Change handler */
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  /** Whether the radio button is disabled */
-  disabled?: boolean;
-  /** Radio button name */
-  name?: string;
-  /** Radio button id */
-  id?: string;
-  /** Radio button value */
-  value?: string;
+  /** If true, the radio will take up the full width of its container */
+  fullWidth?: boolean;
 }
 
-export const Radio: React.FC<RadioProps> = ({
-  label,
-  labelPosition = 'right',
-  size = 'medium',
-  helperText,
-  error,
-  required = false,
-  className = '',
-  checked,
-  defaultChecked,
-  onChange,
-  disabled = false,
-  name,
-  id,
-  value,
-}) => {
-  const containerClasses = [
-    styles.container,
-    styles[size],
-    styles[`label-${labelPosition}`],
-    disabled && styles.disabled,
-    error && styles.error,
-    className,
-  ].filter(Boolean).join(' ');
+export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
+  (
+    {
+      size = 'medium',
+      label,
+      error = false,
+      helperText,
+      fullWidth = false,
+      className,
+      disabled,
+      id,
+      ...props
+    },
+    ref
+  ) => {
+    const radioId = id || React.useId();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disabled) {
-      onChange?.(e);
-    }
-  };
+    const classes = classNames(
+      styles.radio,
+      styles[size],
+      {
+        [styles.error]: error,
+        [styles.disabled]: disabled,
+        [styles.fullWidth]: fullWidth,
+      },
+      className
+    );
 
-  const radioId = id || React.useId();
+    const containerClasses = classNames(styles.container, {
+      [styles.fullWidth]: fullWidth,
+    });
 
-  return (
-    <div className={containerClasses}>
-      <div className={styles.inputWrapper}>
-        <input
-          id={radioId}
-          name={name}
-          type="radio"
-          checked={checked}
-          defaultChecked={defaultChecked}
-          disabled={disabled}
-          onChange={handleChange}
-          value={value}
-          required={required}
-          className={styles.input}
-          aria-invalid={!!error}
-          aria-describedby={helperText || error ? `${radioId}-helper-text` : undefined}
-        />
-        <span className={styles.control} aria-hidden="true">
-          <span className={styles.inner} />
-        </span>
-      </div>
-      {label && (
-        <label htmlFor={radioId} className={styles.label}>
-          {label}
-        </label>
-      )}
-      {(helperText || error) && (
-        <div 
-          id={`${radioId}-helper-text`}
-          className={`${styles.helperText} ${error ? styles.errorText : ''}`}
-        >
-          {error || helperText}
+    return (
+      <div className={containerClasses}>
+        <div className={styles.wrapper}>
+          <input
+            ref={ref}
+            type="radio"
+            id={radioId}
+            disabled={disabled}
+            aria-invalid={error}
+            className={classes}
+            {...props}
+          />
+          <div className={styles.circle} />
+          {label && (
+            <label htmlFor={radioId} className={styles.label}>
+              {label}
+            </label>
+          )}
         </div>
-      )}
-    </div>
-  );
-}; 
+        {helperText && (
+          <div className={classNames(styles.helperText, { [styles.error]: error })}>
+            {helperText}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
+
+Radio.displayName = 'Radio'; 

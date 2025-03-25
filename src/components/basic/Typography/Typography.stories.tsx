@@ -1,377 +1,196 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Typography } from './Typography';
+import { ThemeProvider } from '../../providers/ThemeProvider';
 
-const meta = {
-  title: 'Components/Basic/Typography',
+const meta: Meta<typeof Typography> = {
+  title: 'Basic/Typography',
   component: Typography,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
-    layout: 'centered',
+    docs: {
+      description: {
+        component: 'A versatile typography component that supports various styles and features.',
+      },
+    },
   },
-} satisfies Meta<typeof Typography>;
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: [
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'subtitle1',
+        'subtitle2',
+        'body1',
+        'body2',
+        'caption',
+        'overline',
+      ],
+      description: 'The variant of the typography.',
+    },
+    color: {
+      control: 'select',
+      options: [
+        'inherit',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'error',
+        'info',
+      ],
+      description: 'The color of the typography.',
+    },
+    weight: {
+      control: 'select',
+      options: ['light', 'regular', 'medium', 'semibold', 'bold'],
+      description: 'The font weight of the typography.',
+    },
+    align: {
+      control: 'select',
+      options: ['inherit', 'left', 'center', 'right', 'justify'],
+      description: 'The text alignment.',
+    },
+    noWrap: {
+      control: 'boolean',
+      description: 'If true, the text will not wrap.',
+    },
+    truncate: {
+      control: 'boolean',
+      description: 'If true, the text will be truncated with an ellipsis.',
+    },
+    as: {
+      control: 'text',
+      description: 'The HTML tag to use.',
+    },
+  },
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Typography>;
 
-// Heading Variants
-export const Heading1: Story = {
+export const Default: Story = {
   args: {
-    variant: 'h1',
-    children: 'Heading 1',
+    children: 'Typography Example',
   },
 };
 
-export const Heading2: Story = {
-  args: {
-    variant: 'h2',
-    children: 'Heading 2',
-  },
+export const Variants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Typography variant="h1">Heading 1</Typography>
+      <Typography variant="h2">Heading 2</Typography>
+      <Typography variant="h3">Heading 3</Typography>
+      <Typography variant="h4">Heading 4</Typography>
+      <Typography variant="h5">Heading 5</Typography>
+      <Typography variant="h6">Heading 6</Typography>
+      <Typography variant="subtitle1">Subtitle 1</Typography>
+      <Typography variant="subtitle2">Subtitle 2</Typography>
+      <Typography variant="body1">Body 1</Typography>
+      <Typography variant="body2">Body 2</Typography>
+      <Typography variant="caption">Caption Text</Typography>
+      <Typography variant="overline">Overline Text</Typography>
+    </div>
+  ),
 };
 
-export const Heading3: Story = {
-  args: {
-    variant: 'h3',
-    children: 'Heading 3',
-  },
+export const Colors: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <Typography color="inherit">Inherit Color</Typography>
+      <Typography color="primary">Primary Color</Typography>
+      <Typography color="secondary">Secondary Color</Typography>
+      <Typography color="success">Success Color</Typography>
+      <Typography color="warning">Warning Color</Typography>
+      <Typography color="error">Error Color</Typography>
+      <Typography color="info">Info Color</Typography>
+    </div>
+  ),
 };
 
-export const Heading4: Story = {
-  args: {
-    variant: 'h4',
-    children: 'Heading 4',
-  },
+export const Weights: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <Typography weight="light">Light Weight (300)</Typography>
+      <Typography weight="regular">Regular Weight (400)</Typography>
+      <Typography weight="medium">Medium Weight (500)</Typography>
+      <Typography weight="semibold">Semibold Weight (600)</Typography>
+      <Typography weight="bold">Bold Weight (700)</Typography>
+    </div>
+  ),
 };
 
-export const Heading5: Story = {
-  args: {
-    variant: 'h5',
-    children: 'Heading 5',
-  },
+export const Alignment: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <Typography align="left">Left Aligned Text</Typography>
+      <Typography align="center">Center Aligned Text</Typography>
+      <Typography align="right">Right Aligned Text</Typography>
+      <Typography align="justify">
+        Justify Aligned Text. This is a longer text to demonstrate justified
+        alignment. The text will be spaced to align with both the left and right
+        margins.
+      </Typography>
+    </div>
+  ),
 };
 
-export const Heading6: Story = {
-  args: {
-    variant: 'h6',
-    children: 'Heading 6',
-  },
-};
-
-// Body Text Variants
-export const Body1: Story = {
-  args: {
-    variant: 'body1',
-    children: 'Body 1 text with normal weight and size.',
-  },
-};
-
-export const Body2: Story = {
-  args: {
-    variant: 'body2',
-    children: 'Body 2 text with smaller size.',
-  },
-};
-
-// Special Variants
-export const Caption: Story = {
-  args: {
-    variant: 'caption',
-    children: 'Caption text',
-  },
-};
-
-export const Overline: Story = {
-  args: {
-    variant: 'overline',
-    children: 'OVERLINE TEXT',
-  },
-};
-
-// Colors
-export const PrimaryColor: Story = {
-  args: {
-    variant: 'body1',
-    color: 'primary',
-    children: 'Primary color text',
-  },
-};
-
-export const SecondaryColor: Story = {
-  args: {
-    variant: 'body1',
-    color: 'secondary',
-    children: 'Secondary color text',
-  },
-};
-
-export const ErrorColor: Story = {
-  args: {
-    variant: 'body1',
-    color: 'error',
-    children: 'Error color text',
-  },
-};
-
-export const SuccessColor: Story = {
-  args: {
-    variant: 'body1',
-    color: 'success',
-    children: 'Success color text',
-  },
-};
-
-export const WarningColor: Story = {
-  args: {
-    variant: 'body1',
-    color: 'warning',
-    children: 'Warning color text',
-  },
-};
-
-export const InfoColor: Story = {
-  args: {
-    variant: 'body1',
-    color: 'info',
-    children: 'Info color text',
-  },
-};
-
-// Alignment
-export const LeftAlign: Story = {
-  args: {
-    variant: 'h4',
-    align: 'left',
-    children: 'Left Aligned Text',
-  },
-};
-
-export const CenterAlign: Story = {
-  args: {
-    variant: 'h4',
-    align: 'center',
-    children: 'Center Aligned Text',
-  },
-};
-
-export const RightAlign: Story = {
-  args: {
-    variant: 'h4',
-    align: 'right',
-    children: 'Right Aligned Text',
-  },
-};
-
-// Font Weights
-export const LightWeight: Story = {
-  args: {
-    variant: 'h4',
-    weight: 'light',
-    children: 'Light Weight Text',
-  },
-};
-
-export const RegularWeight: Story = {
-  args: {
-    variant: 'h4',
-    weight: 'regular',
-    children: 'Regular Weight Text',
-  },
-};
-
-export const MediumWeight: Story = {
-  args: {
-    variant: 'h4',
-    weight: 'medium',
-    children: 'Medium Weight Text',
-  },
-};
-
-export const BoldWeight: Story = {
-  args: {
-    variant: 'h4',
-    weight: 'bold',
-    children: 'Bold Weight Text',
-  },
-};
-
-// Utilities
 export const NoWrap: Story = {
   args: {
-    variant: 'body1',
     noWrap: true,
-    children: 'This is a very long text that will be truncated with an ellipsis when it reaches the container width.',
+    children:
+      'This is a very long text that would normally wrap to the next line, but noWrap prevents that from happening.',
   },
 };
 
-export const WithGutterBottom: Story = {
+export const Truncate: Story = {
   args: {
-    variant: 'h4',
-    gutterBottom: true,
-    children: 'Heading with Bottom Margin',
+    truncate: true,
+    style: { width: '200px' },
+    children:
+      'This is a very long text that will be truncated with an ellipsis when it reaches the width limit.',
   },
 };
 
-// Component Override
 export const CustomComponent: Story = {
   args: {
-    variant: 'h4',
-    component: 'div',
-    children: 'This is an h4 variant rendered as a div',
-  },
-};
-
-// Text Effects
-export const Underline: Story = {
-  args: {
-    variant: 'body1',
-    decoration: 'underline',
-    children: 'Underlined text',
-  },
-};
-
-export const LineThrough: Story = {
-  args: {
-    variant: 'body1',
-    decoration: 'line-through',
-    children: 'Line-through text',
-  },
-};
-
-// Text Transform
-export const Uppercase: Story = {
-  args: {
-    variant: 'body1',
-    transform: 'uppercase',
-    children: 'Uppercase text',
-  },
-};
-
-export const Lowercase: Story = {
-  args: {
-    variant: 'body1',
-    transform: 'lowercase',
-    children: 'LOWERCASE TEXT',
-  },
-};
-
-export const Capitalize: Story = {
-  args: {
-    variant: 'body1',
-    transform: 'capitalize',
-    children: 'capitalized text',
-  },
-};
-
-// Line Height and Spacing
-export const TightLineHeight: Story = {
-  args: {
-    variant: 'body1',
-    lineHeight: 'tight',
-    children: 'Text with tight line height.\nSecond line of text.\nThird line of text.',
-  },
-};
-
-export const LooseLineHeight: Story = {
-  args: {
-    variant: 'body1',
-    lineHeight: 'loose',
-    children: 'Text with loose line height.\nSecond line of text.\nThird line of text.',
-  },
-};
-
-export const TighterLetterSpacing: Story = {
-  args: {
-    variant: 'body1',
-    letterSpacing: 'tighter',
-    children: 'Text with tighter letter spacing',
-  },
-};
-
-export const WiderLetterSpacing: Story = {
-  args: {
-    variant: 'body1',
-    letterSpacing: 'wider',
-    children: 'Text with wider letter spacing',
-  },
-};
-
-// Truncation
-export const SingleLineTruncate: Story = {
-  args: {
-    variant: 'body1',
-    truncate: 'single',
-    children: 'This is a very long text that will be truncated to a single line when it exceeds the container width.',
-  },
-};
-
-export const MultiLineTruncate: Story = {
-  args: {
-    variant: 'body1',
-    truncate: 'multi',
-    truncateLines: 2,
-    children: 'This is a very long text that will be truncated after two lines. It contains enough content to demonstrate the multi-line truncation feature effectively.',
-  },
-};
-
-// Text Shadow
-export const SmallShadow: Story = {
-  args: {
-    variant: 'h4',
-    shadow: 'sm',
-    children: 'Text with Small Shadow',
-  },
-};
-
-export const LargeShadow: Story = {
-  args: {
-    variant: 'h4',
-    shadow: 'lg',
-    children: 'Text with Large Shadow',
-  },
-};
-
-// Font Families
-export const SerifFont: Story = {
-  args: {
-    variant: 'body1',
-    fontFamily: 'serif',
-    children: 'Text with serif font family',
-  },
-};
-
-export const MonoFont: Story = {
-  args: {
-    variant: 'body1',
-    fontFamily: 'mono',
-    children: 'Text with monospace font',
-  },
-};
-
-export const CustomFont: Story = {
-  args: {
-    variant: 'body1',
-    fontFamily: 'custom',
-    customFontFamily: 'Comic Sans MS, cursive',
-    children: 'Text with custom font family',
-  },
-};
-
-// Combined Examples
-export const StyledHeading: Story = {
-  args: {
-    variant: 'h2',
+    as: 'a',
     color: 'primary',
-    weight: 'bold',
-    transform: 'uppercase',
-    letterSpacing: 'wide',
-    children: 'Styled Heading Example',
+    children: 'This is a link styled with Typography',
+    style: { textDecoration: 'none', cursor: 'pointer' },
   },
+  render: (args) => (
+    <Typography {...args} onClick={() => window.open('#', '_blank')}>
+      {args.children}
+    </Typography>
+  ),
 };
 
-export const StyledParagraph: Story = {
-  args: {
-    variant: 'body1',
-    color: 'secondary',
-    lineHeight: 'relaxed',
-    letterSpacing: 'wide',
-    children: 'This is a styled paragraph with custom line height and letter spacing to demonstrate the combination of different typography properties.',
-  },
+export const DarkTheme: Story = {
+  decorators: [
+    (Story) => (
+      <ThemeProvider themeId="dark">
+        <div style={{ padding: '24px', background: '#333' }}>
+          <Story />
+        </div>
+      </ThemeProvider>
+    ),
+  ],
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <Typography variant="h4" color="primary">Dark Theme Typography</Typography>
+      <Typography color="secondary">Secondary text in dark theme</Typography>
+      <Typography>Default text in dark theme</Typography>
+    </div>
+  ),
 }; 

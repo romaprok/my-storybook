@@ -1,104 +1,136 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from './Checkbox';
+import { ThemeProvider } from '../../providers/ThemeProvider';
 
-const meta = {
-  title: 'Components/Basic/Checkbox',
+const meta: Meta<typeof Checkbox> = {
+  title: 'Basic/Checkbox',
   component: Checkbox,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
-    layout: 'centered',
     docs: {
       description: {
-        component: 'A customizable checkbox component that supports both checkbox and switch variants.',
+        component: 'A versatile checkbox component that supports various sizes and states.',
       },
     },
   },
-  tags: ['autodocs'],
   argTypes: {
-    label: {
-      description: 'The label text for the checkbox',
-      control: 'text',
-    },
-    variant: {
-      description: 'The visual variant of the checkbox',
-      control: { type: 'radio', options: ['checkbox', 'switch'] },
-    },
     size: {
-      description: 'The size of the checkbox',
-      control: { type: 'radio', options: ['small', 'medium', 'large'] },
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description: 'The size of the checkbox.',
     },
-    labelPosition: {
-      description: 'The position of the label relative to the checkbox',
-      control: { type: 'radio', options: ['left', 'right'] },
-    },
-    disabled: {
-      description: 'Whether the checkbox is disabled',
-      control: 'boolean',
+    label: {
+      control: 'text',
+      description: 'The label for the checkbox.',
     },
     error: {
-      description: 'Error message to display',
-      control: 'text',
+      control: 'boolean',
+      description: 'If true, the checkbox will be displayed in an error state.',
     },
     helperText: {
-      description: 'Helper text to display below the checkbox',
       control: 'text',
+      description: 'Helper text to display below the checkbox.',
+    },
+    indeterminate: {
+      control: 'boolean',
+      description: 'If true, the checkbox will be in an indeterminate state.',
+    },
+    fullWidth: {
+      control: 'boolean',
+      description: 'If true, the checkbox will take up the full width of its container.',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'If true, the checkbox will be disabled.',
     },
   },
-} satisfies Meta<typeof Checkbox>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Checkbox>;
 
-// 1. Default checkbox
 export const Default: Story = {
   args: {
-    label: 'Default Checkbox',
+    label: 'Checkbox',
   },
 };
 
-// 2. Switch variant
-export const Switch: Story = {
-  args: {
-    variant: 'switch',
-    label: 'Switch Variant',
-  },
+export const Sizes: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Checkbox size="small" label="Small checkbox" />
+      <Checkbox size="medium" label="Medium checkbox" />
+      <Checkbox size="large" label="Large checkbox" />
+    </div>
+  ),
 };
 
-// 3. Different size
-export const Small: Story = {
-  args: {
-    size: 'small',
-    label: 'Small Checkbox',
-  },
+export const States: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Checkbox label="Unchecked" />
+      <Checkbox label="Checked" defaultChecked />
+      <Checkbox label="Indeterminate" indeterminate />
+      <Checkbox label="Disabled" disabled />
+      <Checkbox label="Disabled checked" disabled defaultChecked />
+      <Checkbox label="Disabled indeterminate" disabled indeterminate />
+    </div>
+  ),
 };
 
-// 4. Label position
-export const LabelLeft: Story = {
-  args: {
-    label: 'Label on Left',
-    labelPosition: 'left',
-  },
-};
-
-// 5. With error state
-export const WithError: Story = {
-  args: {
-    label: 'Accept Terms',
-    error: 'You must accept the terms to continue',
-  },
-};
-
-// 6. Disabled state
-export const Disabled: Story = {
-  args: {
-    label: 'Disabled Checkbox',
-    disabled: true,
-  },
-};
-
-// 7. With helper text
 export const WithHelperText: Story = {
   args: {
     label: 'Terms and Conditions',
-    helperText: 'Please read and accept our terms and conditions',
+    helperText: 'Please read and accept the terms and conditions',
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    label: 'Accept terms',
+    error: true,
+    helperText: 'You must accept the terms to continue',
+  },
+};
+
+export const FullWidth: Story = {
+  args: {
+    label: 'Full width checkbox',
+    helperText: 'This checkbox takes up the full width',
+    fullWidth: true,
+  },
+};
+
+export const WithHTMLLabel: Story = {
+  args: {
+    label: (
+      <span>
+        I agree to the{' '}
+        <a href="#" style={{ color: 'var(--phork-accent-color, #0060ce)' }}>
+          terms and conditions
+        </a>
+      </span>
+    ),
+  },
+};
+
+export const DarkTheme: Story = {
+  decorators: [
+    (Story) => (
+      <ThemeProvider themeId="dark">
+        <div style={{ padding: '24px', background: '#333' }}>
+          <Story />
+        </div>
+      </ThemeProvider>
+    ),
+  ],
+  args: {
+    label: 'Dark theme checkbox',
   },
 }; 

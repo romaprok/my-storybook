@@ -1,0 +1,158 @@
+.flex {
+  display: flex;
+  box-sizing: border-box;
+}
+
+/* Direction */
+.directionRow {
+  flex-direction: row;
+}
+
+.directionColumn {
+  flex-direction: column;
+}
+
+.directionRowReverse {
+  flex-direction: row-reverse;
+}
+
+.directionColumnReverse {
+  flex-direction: column-reverse;
+}
+
+/* Wrap */
+.wrapNowrap {
+  flex-wrap: nowrap;
+}
+
+.wrapWrap {
+  flex-wrap: wrap;
+}
+
+.wrapWrapReverse {
+  flex-wrap: wrap-reverse;
+}
+
+/* Alignment */
+.alignFlexStart {
+  align-items: flex-start;
+}
+
+.alignFlexEnd {
+  align-items: flex-end;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.alignStretch {
+  align-items: stretch;
+}
+
+.alignBaseline {
+  align-items: baseline;
+}
+
+/* Justify */
+.justifyFlexStart {
+  justify-content: flex-start;
+}
+
+.justifyFlexEnd {
+  justify-content: flex-end;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifySpaceBetween {
+  justify-content: space-between;
+}
+
+.justifySpaceAround {
+  justify-content: space-around;
+}
+
+.justifySpaceEvenly {
+  justify-content: space-evenly;
+}
+
+/* Gap */
+.gapNone {
+  gap: 0;
+}
+
+.gapXs {
+  gap: var(--phork-spacing-xs, 4px);
+}
+
+.gapSm {
+  gap: var(--phork-spacing-sm, 8px);
+}
+
+.gapMd {
+  gap: var(--phork-spacing-md, 16px);
+}
+
+.gapLg {
+  gap: var(--phork-spacing-lg, 24px);
+}
+
+.gapXl {
+  gap: var(--phork-spacing-xl, 32px);
+}
+
+.gapXxl {
+  gap: var(--phork-spacing-xxl, 48px);
+}
+
+/* Utility classes */
+.fullWidth {
+  width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.inline {
+  display: inline-flex;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.centerVertical {
+  align-items: center;
+}
+
+.centerHorizontal {
+  justify-content: center;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.spaceAround {
+  justify-content: space-around;
+}
+
+.spaceEvenly {
+  justify-content: space-evenly;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .responsive {
+    flex-direction: column;
+  }
+} 

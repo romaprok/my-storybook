@@ -1,188 +1,175 @@
 .button {
-  border-radius: var(--border-radius-md);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: all var(--transition-normal);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid transparent;
-  outline: none;
   position: relative;
-  min-width: var(--button-min-width);
-  font-family: var(--font-family);
-  letter-spacing: 0.01em;
-  text-decoration: none;
+  min-width: 64px;
+  padding: 6px 16px;
+  border-radius: var(--phork-border-radius, 4px);
+  font-family: var(--phork-font-family, inherit);
+  font-size: var(--phork-font-size-medium, 0.875rem);
+  font-weight: var(--phork-font-weight-medium, 500);
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  outline: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  background-color: var(--phork-button-color, var(--phork-accent-color, #0060ce));
+  color: var(--phork-button-color-contrast, var(--phork-accent-color-contrast, #ffffff));
 }
 
-.buttonContent {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-xs);
-  width: 100%;
+.button:hover:not(:disabled) {
+  background-color: var(--phork-button-color-L10, var(--phork-accent-color-L10, #1a75d2));
 }
 
-.buttonContentLoading {
-  opacity: 0;
+.button:active:not(:disabled) {
+  background-color: var(--phork-button-color-L20, var(--phork-accent-color-L20, #3389d6));
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: var(--phork-disabled-color, #cccccc);
+  color: var(--phork-disabled-color-contrast, #666666);
 }
 
 /* Variants */
-.buttonPrimary {
-  background-color: var(--color-primary);
-  color: var(--color-background);
-  border: none;
-  box-shadow: var(--shadow-sm);
-}
-
-.buttonPrimary:hover:not(.buttonDisabled) {
-  background-color: var(--color-primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.buttonPrimary:active:not(.buttonDisabled) {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-.buttonPrimary:focus-visible:not(.buttonDisabled) {
-  box-shadow: var(--focus-ring);
-}
-
-.buttonSecondary {
-  background-color: var(--color-secondary);
-  color: var(--color-text-secondary);
-}
-
-.buttonSecondary:hover:not(.buttonDisabled) {
-  background-color: var(--color-secondary-hover);
-}
-
-.buttonSecondary:focus-visible:not(.buttonDisabled) {
-  box-shadow: var(--focus-ring);
-}
-
-.buttonOutline {
+.outlined {
   background-color: transparent;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
+  border: 2px solid var(--phork-button-color, var(--phork-accent-color, #0060ce));
+  color: var(--phork-button-color, var(--phork-accent-color, #0060ce));
 }
 
-.buttonOutline:hover:not(.buttonDisabled) {
-  background-color: var(--color-primary);
-  color: var(--color-background);
+.outlined:hover:not(:disabled) {
+  background-color: var(--phork-button-color-O5, var(--phork-accent-color-O5, rgba(0, 96, 206, 0.05)));
 }
 
-.buttonOutline:active:not(.buttonDisabled) {
-  background-color: var(--color-primary-hover);
+.outlined:disabled {
+  border-color: var(--phork-disabled-color, #cccccc);
+  color: var(--phork-disabled-color, #cccccc);
 }
 
-.buttonOutline:focus-visible:not(.buttonDisabled) {
-  box-shadow: var(--focus-ring);
-}
-
-.buttonGhost {
+.text {
   background-color: transparent;
-  color: var(--color-text-secondary);
+  color: var(--phork-button-color, var(--phork-accent-color, #0060ce));
+  padding: 6px 8px;
 }
 
-.buttonGhost:hover:not(.buttonDisabled) {
-  background-color: var(--color-background-secondary);
+.text:hover:not(:disabled) {
+  background-color: var(--phork-button-color-O5, var(--phork-accent-color-O5, rgba(0, 96, 206, 0.05)));
 }
 
-.buttonGhost:focus-visible:not(.buttonDisabled) {
-  box-shadow: var(--focus-ring);
+.text:disabled {
+  color: var(--phork-disabled-color, #cccccc);
+}
+
+/* Colors */
+.primary {
+  --phork-button-color: var(--phork-accent-color, #0060ce);
+  --phork-button-color-contrast: var(--phork-accent-color-contrast, #ffffff);
+  --phork-button-color-L10: var(--phork-accent-color-L10, #1a75d2);
+  --phork-button-color-L20: var(--phork-accent-color-L20, #3389d6);
+  --phork-button-color-O5: var(--phork-accent-color-O5, rgba(0, 96, 206, 0.05));
+}
+
+.secondary {
+  --phork-button-color: var(--phork-secondary-color, #9c27b0);
+  --phork-button-color-contrast: var(--phork-secondary-color-contrast, #ffffff);
+  --phork-button-color-L10: var(--phork-secondary-color-L10, #b42cc8);
+  --phork-button-color-L20: var(--phork-secondary-color-L20, #c44dd1);
+  --phork-button-color-O5: var(--phork-secondary-color-O5, rgba(156, 39, 176, 0.05));
+}
+
+.success {
+  --phork-button-color: var(--phork-success-color, #2e7d32);
+  --phork-button-color-contrast: var(--phork-success-color-contrast, #ffffff);
+  --phork-button-color-L10: var(--phork-success-color-L10, #43a047);
+  --phork-button-color-L20: var(--phork-success-color-L20, #66bb6a);
+  --phork-button-color-O5: var(--phork-success-color-O5, rgba(46, 125, 50, 0.05));
+}
+
+.warning {
+  --phork-button-color: var(--phork-warning-color, #ed6c02);
+  --phork-button-color-contrast: var(--phork-warning-color-contrast, #ffffff);
+  --phork-button-color-L10: var(--phork-warning-color-L10, #ef7e1f);
+  --phork-button-color-L20: var(--phork-warning-color-L20, #f19347);
+  --phork-button-color-O5: var(--phork-warning-color-O5, rgba(237, 108, 2, 0.05));
+}
+
+.error {
+  --phork-button-color: var(--phork-error-color, #d32f2f);
+  --phork-button-color-contrast: var(--phork-error-color-contrast, #ffffff);
+  --phork-button-color-L10: var(--phork-error-color-L10, #d94444);
+  --phork-button-color-L20: var(--phork-error-color-L20, #df6868);
+  --phork-button-color-O5: var(--phork-error-color-O5, rgba(211, 47, 47, 0.05));
+}
+
+.info {
+  --phork-button-color: var(--phork-info-color, #0288d1);
+  --phork-button-color-contrast: var(--phork-info-color-contrast, #ffffff);
+  --phork-button-color-L10: var(--phork-info-color-L10, #1a94d6);
+  --phork-button-color-L20: var(--phork-info-color-L20, #33a0db);
+  --phork-button-color-O5: var(--phork-info-color-O5, rgba(2, 136, 209, 0.05));
 }
 
 /* Sizes */
-.buttonSmall {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: var(--font-size-sm);
-  height: var(--button-height-sm);
+.small {
+  padding: 4px 10px;
+  font-size: var(--phork-font-size-small, 0.8125rem);
 }
 
-.buttonMedium {
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-size: var(--font-size-md);
-  height: var(--button-height-md);
-}
-
-.buttonLarge {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: var(--font-size-lg);
-  height: var(--button-height-lg);
-}
-
-/* States */
-.buttonDisabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* Full Width */
-.buttonFullWidth {
-  width: 100%;
+.large {
+  padding: 8px 22px;
+  font-size: var(--phork-font-size-large, 0.9375rem);
 }
 
 /* Icons */
-.buttonIconLeft {
+.startIcon {
+  margin-right: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: var(--spacing-xs);
 }
 
-.buttonIconRight {
+.endIcon {
+  margin-left: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: var(--spacing-xs);
 }
 
-/* Loading Spinner */
+/* Loading state */
+.loading {
+  color: transparent !important;
+}
+
 .spinner {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--phork-spinner-track-color, rgba(255, 255, 255, 0.3));
+  border-radius: 50%;
+  border-top-color: var(--phork-spinner-color, white);
+  animation: spin 0.8s linear infinite;
 }
 
-.spinnerSvg {
-  width: var(--spacing-xl);
-  height: var(--spacing-xl);
-  animation: rotate 1s linear infinite;
-}
-
-.spinnerCircle {
-  stroke: currentColor;
-  stroke-linecap: round;
-  animation: dash 1.5s ease-in-out infinite;
-}
-
-@keyframes rotate {
-  100% {
+@keyframes spin {
+  to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes dash {
-  0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
-  }
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
-  }
+/* Full width */
+.fullWidth {
+  width: 100%;
+}
+
+/* Focus state */
+.button:focus-visible {
+  outline: 2px solid var(--phork-focus-ring-color, #0060ce);
+  outline-offset: 2px;
 } 

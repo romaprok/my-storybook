@@ -1,117 +1,167 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Radio } from './Radio';
+import { ThemeProvider } from '../../providers/ThemeProvider';
 
-const meta = {
-  title: 'Components/Basic/Radio',
+const meta: Meta<typeof Radio> = {
+  title: 'Basic/Radio',
   component: Radio,
+  decorators: [
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
   parameters: {
-    layout: 'centered',
     docs: {
       description: {
-        component: 'A customizable radio button component.',
+        component: 'A versatile radio component that supports various sizes and states.',
       },
     },
   },
-  tags: ['autodocs'],
   argTypes: {
-    label: {
-      description: 'The label text for the radio button',
-      control: 'text',
-    },
     size: {
-      description: 'The size of the radio button',
-      control: { type: 'radio', options: ['small', 'medium', 'large'] },
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description: 'The size of the radio.',
     },
-    labelPosition: {
-      description: 'The position of the label relative to the radio button',
-      control: { type: 'radio', options: ['left', 'right'] },
-    },
-    disabled: {
-      description: 'Whether the radio button is disabled',
-      control: 'boolean',
+    label: {
+      control: 'text',
+      description: 'The label for the radio.',
     },
     error: {
-      description: 'Error message to display',
-      control: 'text',
+      control: 'boolean',
+      description: 'If true, the radio will be displayed in an error state.',
     },
     helperText: {
-      description: 'Helper text to display below the radio button',
       control: 'text',
+      description: 'Helper text to display below the radio.',
     },
-    checked: {
-      description: 'Whether the radio button is checked',
+    fullWidth: {
       control: 'boolean',
+      description: 'If true, the radio will take up the full width of its container.',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'If true, the radio will be disabled.',
     },
   },
-} satisfies Meta<typeof Radio>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Radio>;
 
-// 1. Default radio
 export const Default: Story = {
   args: {
-    label: 'Default Radio',
+    label: 'Radio option',
+    name: 'default',
   },
 };
 
-// 2. Different size
-export const Small: Story = {
-  args: {
-    size: 'small',
-    label: 'Small Radio',
-  },
-};
-
-// 3. Label position
-export const LabelLeft: Story = {
-  args: {
-    label: 'Label on Left',
-    labelPosition: 'left',
-  },
-};
-
-// 4. With error state
-export const WithError: Story = {
-  args: {
-    label: 'Required option',
-    error: 'Please select an option',
-  },
-};
-
-// 5. Disabled state
-export const Disabled: Story = {
-  args: {
-    label: 'Disabled Radio',
-    disabled: true,
-  },
-};
-
-// 6. With helper text
-export const WithHelperText: Story = {
-  args: {
-    label: 'Select an option',
-    helperText: 'Choose one of the available options',
-  },
-};
-
-// 7. Radio group example
-export const RadioGroup: Story = {
+export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Radio size="small" label="Small radio" name="size" value="small" />
+      <Radio size="medium" label="Medium radio" name="size" value="medium" />
+      <Radio size="large" label="Large radio" name="size" value="large" />
+    </div>
+  ),
+};
+
+export const States: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Radio label="Unchecked" name="states" value="unchecked" />
+      <Radio label="Checked" name="states" value="checked" defaultChecked />
+      <Radio label="Disabled" name="states" value="disabled" disabled />
       <Radio
-        name="options"
-        label="Option 1"
-        checked={true}
-      />
-      <Radio
-        name="options"
-        label="Option 2"
-      />
-      <Radio
-        name="options"
-        label="Option 3"
+        label="Disabled checked"
+        name="states"
+        value="disabled-checked"
+        disabled
+        defaultChecked
       />
     </div>
   ),
+};
+
+export const WithHelperText: Story = {
+  args: {
+    label: 'Select option',
+    helperText: 'Additional information about this option',
+    name: 'helper',
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    label: 'Invalid option',
+    error: true,
+    helperText: 'Please select a valid option',
+    name: 'error',
+  },
+};
+
+export const FullWidth: Story = {
+  args: {
+    label: 'Full width radio',
+    helperText: 'This radio takes up the full width',
+    fullWidth: true,
+    name: 'fullwidth',
+  },
+};
+
+export const Group: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Radio
+        name="group"
+        value="option1"
+        label="Option 1"
+        helperText="Description for option 1"
+      />
+      <Radio
+        name="group"
+        value="option2"
+        label="Option 2"
+        helperText="Description for option 2"
+      />
+      <Radio
+        name="group"
+        value="option3"
+        label="Option 3"
+        helperText="Description for option 3"
+      />
+    </div>
+  ),
+};
+
+export const WithHTMLLabel: Story = {
+  args: {
+    label: (
+      <span>
+        I agree to receive{' '}
+        <a href="#" style={{ color: 'var(--phork-accent-color, #0060ce)' }}>
+          promotional emails
+        </a>
+      </span>
+    ),
+    name: 'html-label',
+  },
+};
+
+export const DarkTheme: Story = {
+  decorators: [
+    (Story) => (
+      <ThemeProvider themeId="dark">
+        <div style={{ padding: '24px', background: '#333' }}>
+          <Story />
+        </div>
+      </ThemeProvider>
+    ),
+  ],
+  args: {
+    label: 'Dark theme radio',
+    name: 'dark-theme',
+  },
 }; 

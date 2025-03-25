@@ -1,99 +1,119 @@
 import React from 'react';
+import classNames from 'classnames';
 import styles from './Textarea.module.css';
 
-export interface TextareaProps {
+export type TextareaVariant = 'outlined' | 'filled' | 'standard';
+
+export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
+  /** The variant of the textarea */
+  variant?: TextareaVariant;
   /** The label for the textarea */
   label?: string;
-  /** The size of the textarea */
-  size?: 'small' | 'medium' | 'large';
-  /** Helper text displayed below the textarea */
+  /** Error state */
+  error?: boolean;
+  /** Helper text to display below the textarea */
   helperText?: string;
-  /** Error message */
-  error?: string;
-  /** Whether the textarea is required */
+  /** If true, the textarea will be required */
   required?: boolean;
-  /** Number of rows to display */
-  rows?: number;
-  /** Custom class name */
-  className?: string;
-  /** The current value of the textarea */
-  value?: string;
-  /** Default value */
-  defaultValue?: string;
-  /** Change handler */
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  /** Whether the textarea is disabled */
-  disabled?: boolean;
-  /** Textarea name */
-  name?: string;
-  /** Textarea id */
-  id?: string;
-  /** Placeholder text */
-  placeholder?: string;
+  /** If true, the textarea will take up the full width of its container */
+  fullWidth?: boolean;
+  /** If true, the textarea will automatically adjust its height based on content */
+  autoResize?: boolean;
+  /** Minimum number of rows to show */
+  minRows?: number;
+  /** Maximum number of rows before scrolling */
+  maxRows?: number;
 }
 
-export const Textarea: React.FC<TextareaProps> = ({
-  label,
-  size = 'medium',
-  helperText,
-  error,
-  required = false,
-  rows = 4,
-  className = '',
-  value,
-  defaultValue,
-  onChange,
-  disabled = false,
-  name,
-  id,
-  placeholder,
-}) => {
-  const containerClasses = [
-    styles.container,
-    styles[size],
-    disabled && styles.disabled,
-    error && styles.error,
-    className,
-  ].filter(Boolean).join(' ');
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  (
+    {
+      variant = 'outlined',
+      label,
+      error = false,
+      helperText,
+      required = false,
+      fullWidth = false,
+      autoResize = false,
+      minRows = 3,
+      maxRows = 10,
+      className,
+      disabled,
+      id,
+      onChange,
+      ...props
+    },
+    ref
+  ) => {
+    const textareaId = id || React.useId();
+    const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (!disabled) {
-      onChange?.(e);
-    }
-  };
+    React.useImperativeHandle(ref, () => textareaRef.current!, []);
 
-  const textareaId = id || React.useId();
+    const handleChange = React.useCallback(
+      (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        if (autoResize && textareaRef.current) {
+          const textarea = textareaRef.current;
+          // Reset height to auto to get the correct scrollHeight
+          textarea.style.height = 'auto';
+          
+          // Calculate new height
+          const lineHeight = parseInt(getComputedStyle(textarea).lineHeight);
+          const minHeight = minRows * lineHeight;
+          const maxHeight = maxRows * lineHeight;
+          const scrollHeight = textarea.scrollHeight;
+          
+          // Set new height within constraints
+          textarea.style.height = `${Math.min(Math.max(minHeight, scrollHeight), maxHeight)}px`;
+        }
+        onChange?.(event);
+      },
+      [autoResize, minRows, maxRows, onChange]
+    );
 
-  return (
-    <div className={containerClasses}>
-      {label && (
-        <label htmlFor={textareaId} className={styles.label}>
-          {label}
-          {required && <span className={styles.required}>*</span>}
-        </label>
-      )}
-      <textarea
-        id={textareaId}
-        name={name}
-        value={value}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        onChange={handleChange}
-        required={required}
-        rows={rows}
-        placeholder={placeholder}
-        className={styles.textarea}
-        aria-invalid={!!error}
-        aria-describedby={helperText || error ? `${textareaId}-helper-text` : undefined}
-      />
-      {(helperText || error) && (
-        <div 
-          id={`${textareaId}-helper-text`}
-          className={`${styles.helperText} ${error ? styles.errorText : ''}`}
-        >
-          {error || helperText}
-        </div>
-      )}
-    </div>
-  );
-}; 
+    const classes = classNames(
+      styles.textarea,
+      styles[variant],
+      {
+        [styles.error]: error,
+        [styles.disabled]: disabled,
+        [styles.fullWidth]: fullWidth,
+        [styles.autoResize]: autoResize,
+      },
+      className
+    );
+
+    const containerClasses = classNames(styles.container, {
+      [styles.fullWidth]: fullWidth,
+    });
+
+    return (
+      <div className={containerClasses}>
+        {label && (
+          <label htmlFor={textareaId} className={styles.label}>
+            {label}
+            {required && <span className={styles.required}>*</span>}
+          </label>
+        )}
+        <textarea
+          ref={textareaRef}
+          id={textareaId}
+          disabled={disabled}
+          aria-invalid={error}
+          aria-required={required}
+          className={classes}
+          onChange={handleChange}
+          rows={minRows}
+          {...props}
+        />
+        {helperText && (
+          <div className={classNames(styles.helperText, { [styles.error]: error })}>
+            {helperText}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
+
+Textarea.displayName = 'Textarea'; 

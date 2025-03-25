@@ -1,72 +1,113 @@
 import React from 'react';
+import classNames from 'classnames';
 import styles from './Typography.module.css';
 
-type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-type TextVariant = 'body1' | 'body2' | 'caption' | 'overline';
+export type TypographyVariant =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'body1'
+  | 'body2'
+  | 'caption'
+  | 'overline';
 
-export interface TypographyProps {
+export type TypographyColor =
+  | 'inherit'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'info';
+
+export type TypographyWeight =
+  | 'light'
+  | 'regular'
+  | 'medium'
+  | 'semibold'
+  | 'bold';
+
+export type TypographyAlign =
+  | 'inherit'
+  | 'left'
+  | 'center'
+  | 'right'
+  | 'justify';
+
+export interface TypographyProps extends Omit<React.HTMLAttributes<HTMLElement>, 'as'> {
   /** The variant of the typography */
-  variant?: HeadingLevel | TextVariant;
-  /** The HTML element to render */
-  component?: HeadingLevel | 'p' | 'span' | 'div';
-  /** The content */
-  children: React.ReactNode;
-  /** The color variant */
-  color?: 'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'info';
+  variant?: TypographyVariant;
+  /** The color of the typography */
+  color?: TypographyColor;
+  /** The font weight of the typography */
+  weight?: TypographyWeight;
   /** The text alignment */
-  align?: 'left' | 'center' | 'right' | 'justify';
-  /** The font weight */
-  weight?: 'light' | 'regular' | 'medium' | 'bold';
-  /** Custom class name */
-  className?: string;
+  align?: TypographyAlign;
+  /** If true, the text will not wrap */
+  noWrap?: boolean;
+  /** If true, the text will be truncated with an ellipsis */
+  truncate?: boolean;
+  /** The HTML tag to use */
+  as?: React.ElementType;
 }
 
-export const Typography: React.FC<TypographyProps> = ({
-  variant = 'body1',
-  component,
-  children,
-  color = 'primary',
-  align = 'left',
-  weight = 'regular',
-  className = '',
-}) => {
-  // Determine the HTML element to render
-  const Component = component || getDefaultComponent(variant);
-
-  // Combine class names
-  const typographyClasses = [
-    styles.typography,
-    styles[`typography${variant.charAt(0).toUpperCase() + variant.slice(1)}`],
-    styles[`typography${color.charAt(0).toUpperCase() + color.slice(1)}`],
-    styles[`typography${align.charAt(0).toUpperCase() + align.slice(1)}`],
-    styles[`typography${weight.charAt(0).toUpperCase() + weight.slice(1)}`],
-    className,
-  ].join(' ');
-
-  return (
-    <Component className={typographyClasses}>
-      {children}
-    </Component>
-  );
+const defaultVariantMapping: Record<TypographyVariant, React.ElementType> = {
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  h6: 'h6',
+  subtitle1: 'h6',
+  subtitle2: 'h6',
+  body1: 'p',
+  body2: 'p',
+  caption: 'span',
+  overline: 'span',
 };
 
-// Helper function to determine the default HTML element based on variant
-function getDefaultComponent(variant: HeadingLevel | TextVariant): HeadingLevel | 'p' | 'span' {
-  switch (variant) {
-    case 'h1':
-    case 'h2':
-    case 'h3':
-    case 'h4':
-    case 'h5':
-    case 'h6':
-      return variant;
-    case 'body1':
-    case 'body2':
-      return 'p';
-    case 'caption':
-    case 'overline':
-      return 'span';
-    default:
-      return 'p';
+export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
+  (
+    {
+      variant = 'body1',
+      color = 'inherit',
+      weight = 'regular',
+      align = 'inherit',
+      noWrap = false,
+      truncate = false,
+      as,
+      className,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const Component = as || defaultVariantMapping[variant];
+
+    const classes = classNames(
+      styles.typography,
+      styles[variant],
+      styles[`color-${color}`],
+      styles[`weight-${weight}`],
+      styles[`align-${align}`],
+      {
+        [styles.noWrap]: noWrap,
+        [styles.truncate]: truncate,
+      },
+      className
+    );
+
+    return (
+      <Component ref={ref} className={classes} {...props}>
+        {children}
+      </Component>
+    );
   }
-} 
+);
+
+Typography.displayName = 'Typography'; 
