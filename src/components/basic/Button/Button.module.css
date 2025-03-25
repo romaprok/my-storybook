@@ -11,6 +11,10 @@
   position: relative;
   min-width: var(--button-min-width);
   font-family: var(--font-family);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .buttonContent {
@@ -30,18 +34,22 @@
   background-color: var(--color-primary);
   color: var(--color-background);
   border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .buttonPrimary:hover:not(.buttonDisabled) {
   background-color: var(--color-primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
 .buttonPrimary:active:not(.buttonDisabled) {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
+}
+
+.buttonPrimary:focus-visible:not(.buttonDisabled) {
+  box-shadow: var(--focus-ring);
 }
 
 .buttonSecondary {
@@ -51,6 +59,10 @@
 
 .buttonSecondary:hover:not(.buttonDisabled) {
   background-color: var(--color-secondary-hover);
+}
+
+.buttonSecondary:focus-visible:not(.buttonDisabled) {
+  box-shadow: var(--focus-ring);
 }
 
 .buttonOutline {
@@ -68,6 +80,10 @@
   background-color: var(--color-primary-hover);
 }
 
+.buttonOutline:focus-visible:not(.buttonDisabled) {
+  box-shadow: var(--focus-ring);
+}
+
 .buttonGhost {
   background-color: transparent;
   color: var(--color-text-secondary);
@@ -77,23 +93,27 @@
   background-color: var(--color-background-secondary);
 }
 
+.buttonGhost:focus-visible:not(.buttonDisabled) {
+  box-shadow: var(--focus-ring);
+}
+
 /* Sizes */
 .buttonSmall {
   padding: var(--spacing-xs) var(--spacing-sm);
   font-size: var(--font-size-sm);
-  height: var(--input-height-sm);
+  height: var(--button-height-sm);
 }
 
 .buttonMedium {
   padding: var(--spacing-sm) var(--spacing-md);
   font-size: var(--font-size-md);
-  height: var(--input-height-md);
+  height: var(--button-height-md);
 }
 
 .buttonLarge {
   padding: var(--spacing-sm) var(--spacing-lg);
   font-size: var(--font-size-lg);
-  height: var(--input-height-lg);
+  height: var(--button-height-lg);
 }
 
 /* States */
@@ -113,12 +133,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-right: var(--spacing-xs);
 }
 
 .buttonIconRight {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-left: var(--spacing-xs);
 }
 
 /* Loading Spinner */

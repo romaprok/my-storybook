@@ -15,6 +15,7 @@
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-xxs);
+  transition: color var(--transition-normal);
 }
 
 .required {
@@ -38,6 +39,8 @@
   background-color: var(--color-background);
   transition: all var(--transition-normal);
   font-family: var(--font-family);
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* Variants */
@@ -47,7 +50,7 @@
 
 .outlined.focused .input {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px var(--color-primary-light);
+  box-shadow: var(--focus-ring);
 }
 
 .filled .input {
@@ -68,10 +71,12 @@
   border-radius: 0;
   padding-left: 0;
   padding-right: 0;
+  background-color: transparent;
 }
 
 .standard.focused .input {
   border-bottom-color: var(--color-primary);
+  box-shadow: 0 1px 0 0 var(--color-primary);
 }
 
 /* Sizes */
@@ -95,6 +100,7 @@
 
 .disabled .input {
   cursor: not-allowed;
+  background-color: var(--color-background-secondary);
 }
 
 .error .input {
@@ -103,7 +109,11 @@
 
 .error.focused .input {
   border-color: var(--color-error);
-  box-shadow: 0 0 0 2px var(--color-error-light);
+  box-shadow: var(--focus-ring-error);
+}
+
+.error .label {
+  color: var(--color-error);
 }
 
 .hasValue.filled .input {
@@ -121,6 +131,7 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  transition: color var(--transition-normal);
 }
 
 .startIcon {
@@ -132,11 +143,11 @@
 }
 
 .hasStartIcon .input {
-  padding-left: var(--spacing-xxl);
+  padding-left: var(--spacing-xxxl);
 }
 
 .hasEndIcon .input {
-  padding-right: var(--spacing-xxl);
+  padding-right: var(--spacing-xxxl);
 }
 
 /* Clear button */
@@ -149,13 +160,14 @@
   border: none;
   color: var(--color-text-helper);
   cursor: pointer;
-  padding: var(--spacing-xxs) var(--spacing-xs);
+  padding: var(--spacing-xxs);
   font-size: var(--font-size-xl);
   line-height: 1;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all var(--transition-normal);
 }
 
 .clearButton:hover {
@@ -163,9 +175,9 @@
   color: var(--color-text-secondary);
 }
 
-.clearButton:focus {
+.clearButton:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--color-primary-light);
+  box-shadow: var(--focus-ring);
 }
 
 /* Helper text */
@@ -173,6 +185,7 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-helper);
   margin-top: var(--spacing-xxs);
+  transition: color var(--transition-normal);
 }
 
 .errorText {
@@ -187,6 +200,7 @@
 /* Placeholder */
 .input::placeholder {
   color: var(--color-text-disabled);
+  opacity: 1;
 }
 
 /* Hover states */
@@ -204,6 +218,13 @@
 .input:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--color-text-primary);
   transition: background-color 5000s ease-in-out 0s;
+  box-shadow: 0 0 0 1000px var(--color-background) inset;
+}
+
+.filled .input:-webkit-autofill,
+.filled .input:-webkit-autofill:hover,
+.filled .input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px var(--color-background-secondary) inset;
 }
 
 /* RTL Support */
@@ -222,12 +243,17 @@
   left: var(--spacing-md);
 }
 
-[dir="rtl"] .startIcon + .input {
+[dir="rtl"] .hasStartIcon .input {
   padding-left: var(--spacing-md);
-  padding-right: var(--spacing-xxl);
+  padding-right: var(--spacing-xxxl);
 }
 
-[dir="rtl"] .endIcon + .input {
+[dir="rtl"] .hasEndIcon .input {
   padding-right: var(--spacing-md);
-  padding-left: var(--spacing-xxl);
+  padding-left: var(--spacing-xxxl);
+}
+
+[dir="rtl"] .required {
+  margin-left: 0;
+  margin-right: var(--spacing-xxs);
 } 
