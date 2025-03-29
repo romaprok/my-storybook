@@ -130,18 +130,3 @@ export const FullWidth: Story = {
     </div>
   ),
 };
-
-export const DarkTheme: Story = {
-  render: () => (
-    <ThemeProvider themeId="dark">
-      <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', background: '#1a1a1a' }}>
-        <Button>Default</Button>
-        <Button variant="outlined">Outlined</Button>
-        <Button variant="text">Text</Button>
-        <Button color="secondary">Secondary</Button>
-        <Button disabled>Disabled</Button>
-        <Button loading>Loading</Button>
-      </div>
-    </ThemeProvider>
-  ),
-}; 

@@ -149,19 +149,3 @@ export const WithHTMLLabel: Story = {
     name: 'html-label',
   },
 };
-
-export const DarkTheme: Story = {
-  decorators: [
-    (Story) => (
-      <ThemeProvider themeId="dark">
-        <div style={{ padding: '24px', background: '#333' }}>
-          <Story />
-        </div>
-      </ThemeProvider>
-    ),
-  ],
-  args: {
-    label: 'Dark theme radio',
-    name: 'dark-theme',
-  },
-}; 

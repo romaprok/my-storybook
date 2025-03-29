@@ -113,11 +113,11 @@ const Box = ({ children }: { children: React.ReactNode }) => (
 export const Default: Story = {
   args: {
     children: (
-      <>
+      <div style={{ display: 'flex', gap: '8px' }}>
         <Box>Box 1</Box>
         <Box>Box 2</Box>
         <Box>Box 3</Box>
-      </>
+        </div>
     ),
   },
 };
@@ -127,7 +127,7 @@ export const Direction: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div>
         <h3>Row (default)</h3>
-        <Flex>
+        <Flex gap='sm'>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -135,7 +135,7 @@ export const Direction: Story = {
       </div>
       <div>
         <h3>Column</h3>
-        <Flex direction="column">
+        <Flex direction="column" gap='sm'>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -150,7 +150,7 @@ export const Alignment: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div>
         <h3>Flex Start</h3>
-        <Flex align="flex-start" style={{ height: '100px' }}>
+        <Flex align="flex-start" gap='sm' style={{ height: '100px' }}>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -158,7 +158,7 @@ export const Alignment: Story = {
       </div>
       <div>
         <h3>Center</h3>
-        <Flex align="center" style={{ height: '100px' }}>
+        <Flex align="center" gap='sm' style={{ height: '100px' }}>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -166,7 +166,7 @@ export const Alignment: Story = {
       </div>
       <div>
         <h3>Flex End</h3>
-        <Flex align="flex-end" style={{ height: '100px' }}>
+        <Flex align="flex-end" gap='sm' style={{ height: '100px' }}>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -181,7 +181,7 @@ export const Justify: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div>
         <h3>Space Between</h3>
-        <Flex justify="space-between">
+        <Flex justify="space-between" gap='sm'>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -189,7 +189,7 @@ export const Justify: Story = {
       </div>
       <div>
         <h3>Center</h3>
-        <Flex justify="center">
+        <Flex justify="center" gap='sm'>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -197,7 +197,7 @@ export const Justify: Story = {
       </div>
       <div>
         <h3>Space Around</h3>
-        <Flex justify="space-around">
+        <Flex justify="space-around" gap='sm'>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -243,7 +243,7 @@ export const Wrap: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div>
         <h3>No Wrap</h3>
-        <Flex style={{ width: '300px' }}>
+        <Flex gap='sm' style={{ width: '300px' }}>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -253,7 +253,7 @@ export const Wrap: Story = {
       </div>
       <div>
         <h3>Wrap</h3>
-        <Flex wrap="wrap" style={{ width: '300px' }}>
+        <Flex wrap="wrap" gap='sm' style={{ width: '300px' }}>
           <Box>Box 1</Box>
           <Box>Box 2</Box>
           <Box>Box 3</Box>
@@ -267,7 +267,7 @@ export const Wrap: Story = {
 
 export const Responsive: Story = {
   render: () => (
-    <Flex responsive style={{ border: '1px solid var(--phork-border-color, #ddd)', padding: '16px' }}>
+    <Flex gap='sm' responsive style={{ border: '1px solid var(--phork-border-color, #ddd)', padding: '16px' }}>
       <Box>Box 1</Box>
       <Box>Box 2</Box>
       <Box>Box 3</Box>

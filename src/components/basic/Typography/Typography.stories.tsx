@@ -175,22 +175,3 @@ export const CustomComponent: Story = {
     </Typography>
   ),
 };
-
-export const DarkTheme: Story = {
-  decorators: [
-    (Story) => (
-      <ThemeProvider themeId="dark">
-        <div style={{ padding: '24px', background: '#333' }}>
-          <Story />
-        </div>
-      </ThemeProvider>
-    ),
-  ],
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-      <Typography variant="h4" color="primary">Dark Theme Typography</Typography>
-      <Typography color="secondary">Secondary text in dark theme</Typography>
-      <Typography>Default text in dark theme</Typography>
-    </div>
-  ),
-}; 

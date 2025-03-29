@@ -123,24 +123,6 @@ export const Disabled: Story = {
   },
 };
 
-export const FullWidth: Story = {
-  args: {
-    label: 'Full width textarea',
-    placeholder: 'This textarea takes up the full width',
-    fullWidth: true,
-  },
-};
-
-export const AutoResize: Story = {
-  args: {
-    label: 'Auto-resize textarea',
-    placeholder: 'Type something to see the textarea grow...',
-    autoResize: true,
-    minRows: 3,
-    maxRows: 10,
-  },
-};
-
 export const WithCustomRows: Story = {
   args: {
     label: 'Custom rows',
@@ -148,21 +130,5 @@ export const WithCustomRows: Story = {
     autoResize: true,
     minRows: 5,
     maxRows: 15,
-  },
-};
-
-export const DarkTheme: Story = {
-  decorators: [
-    (Story) => (
-      <ThemeProvider themeId="dark">
-        <div style={{ padding: '24px', background: '#333' }}>
-          <Story />
-        </div>
-      </ThemeProvider>
-    ),
-  ],
-  args: {
-    label: 'Dark theme textarea',
-    placeholder: 'Type something...',
   },
 };
